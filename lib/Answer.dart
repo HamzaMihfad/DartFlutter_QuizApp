@@ -18,7 +18,9 @@ class Answer extends StatelessWidget {
             answer,
             style: TextStyle(fontSize: 18),
           ),
-          onPressed: userAnswer,
+          onPressed: () {
+            userAnswer(1);
+          },
         ));
   }
 }

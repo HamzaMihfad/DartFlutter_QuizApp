@@ -12,19 +12,15 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
-class Q {
-  String question;
-  var answers;
-
-  Q(this.question, this.answers);
-}
-
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
 
-  void userAnswer() {
+  void userAnswer(int val) {
     setState(() {
-      _questionIndex += 1;
+      if (val == 1)
+        _questionIndex += 1;
+      else
+        _questionIndex = 0;
     });
     print('Hello');
     print(_questionIndex);
@@ -64,7 +60,20 @@ class _MyAppState extends State<MyApp> {
                     ],
                   )
                 : Center(
-                    child: Text('No more Questions :)'),
-                  )));
+                    child: Column(
+                    children: <Widget>[
+                      Text(
+                        'No more Questions :)',
+                        style: TextStyle(
+                            fontSize: 27, fontWeight: FontWeight.bold),
+                      ),
+                      FlatButton(
+                        child: Text('Restart!'),
+                        onPressed: () {
+                          userAnswer(0);
+                        },
+                      )
+                    ],
+                  ))));
   }
 }
